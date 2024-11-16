@@ -96,7 +96,7 @@ static int simplefb_probe(struct device *dev)
 	if (ret)
 		return ret;
 
-	mem = dev_request_mem_resource(dev, 0);
+	mem = dev_get_resource(dev, IORESOURCE_MEM, 0);
 	if (IS_ERR(mem)) {
 		dev_err(dev, "No memory resource\n");
 		return PTR_ERR(mem);
@@ -116,9 +116,8 @@ static int simplefb_probe(struct device *dev)
 	info->blue = params.format->blue;
 	info->transp = params.format->transp;
 
-	info->screen_base = (void *)mem->start;
+	info->screen_base = IOMEM(mem->start);
 	info->screen_size = resource_size(mem);
-
 
 	info->fbops = &simplefb_ops;
 
