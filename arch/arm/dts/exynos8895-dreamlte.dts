@@ -1,0 +1,83 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * Samsung Exynos78x0 SoC device tree source
+ *
+ * Copyright (c) 2020 Dzmitry Sankouski (dsankouski@gmail.com)
+ */
+
+/dts-v1/;
+#include "exynos8895.dtsi"
+/ {
+	compatible = "samsung,exynos8895", "samsung,dreamlte";
+
+	chosen {
+		#address-cells = <2>;
+		#size-cells = <1>;
+		ranges;
+
+		framebuffer: framebuffer@cc000000 {
+			compatible = "simple-framebuffer";
+			reg = <0 0xcc000000 0x1000000>;
+			width = <1440>;
+			height = <2960>;
+			stride = <(1440 * 4)>;
+			format = "a8r8g8b8";
+		};
+	};
+
+	memory@80000000 {
+		device_type = "memory";
+		reg = <0x0 0x80000000 0x3c800000>,
+		      <0x0 0xc0000000 0x40000000>,
+		      <0x8 0x80000000 0x80000000>;
+	};
+
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <1>;
+		ranges;
+
+		ramoops@92000000 {
+			compatible = "ramoops";
+			reg = <0 0x92000000 0x8000>;
+			record-size = <0x4000>;
+			console-size = <0x4000>;
+		};
+
+		cont_splash_mem: framebuffer@cc000000 {
+			reg = <0 0xcc000000 0x1000000>;
+			no-map;
+		};
+	};
+
+	usbdrd30_vbus_reg: regulator-usbdrd30-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "VBUS_USB";
+	};
+};
+
+&oscclk {
+	clock-frequency = <26000000>;
+};
+
+&usbdrd30 {
+	status = "okay";
+	vbus-supply = <&usbdrd30_vbus_reg>;
+	vbus-boost-supply = <&usbdrd30_vbus_reg>;
+};
+
+&usbdrd30_dwc3 {
+	dr_mode = "otg";
+	usb-role-switch;
+	role-switch-default-mode = "peripheral";
+	status = "okay";
+	vbus-supply = <&usbdrd30_vbus_reg>;
+	vbus-boost-supply = <&usbdrd30_vbus_reg>;
+};
+
+&usbdrd30_phy {
+	vbus-supply = <&usbdrd30_vbus_reg>;
+	vbus-boost-supply = <&usbdrd30_vbus_reg>;
+
+	status = "okay";
+};

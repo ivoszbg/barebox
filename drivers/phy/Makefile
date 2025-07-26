@@ -8,3 +8,4 @@ obj-$(CONFIG_USB_NOP_XCEIV)		+= usb-nop-xceiv.o
 obj-y					+= freescale/
 obj-$(CONFIG_PHY_STM32_USBPHYC) 	+= phy-stm32-usbphyc.o
 obj-y					+= rockchip/
+obj-y					+= samsung/

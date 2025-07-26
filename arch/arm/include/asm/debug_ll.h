@@ -27,6 +27,10 @@
 #include <mach/vexpress/debug_ll.h>
 #endif
 
+#ifdef CONFIG_DEBUG_DREAMLTE_UART
+#include <mach/dreamlte/debug_ll.h>
+#endif
+
 #ifdef CONFIG_DEBUG_BCM283X_UART
 #include <mach/bcm283x/debug_ll.h>
 #endif

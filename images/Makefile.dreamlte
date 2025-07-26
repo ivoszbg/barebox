@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# barebox image generation Makefile for dreamlte images
+#
+
+pblb-$(CONFIG_MACH_DREAMLTE) += start_dreamlte
+FILE_barebox-dreamlte.img = start_dreamlte.pblb
+image-$(CONFIG_MACH_DREAMLTE) += barebox-dreamlte.img

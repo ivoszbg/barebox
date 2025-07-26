@@ -232,6 +232,11 @@ config ARCH_VEXPRESS
 	select COMMON_CLK
 	select COMMON_CLK_OF_PROVIDER
 
+config ARCH_SAMSUNG
+	bool "ARM Exynos boards"
+	depends on ARCH_MULTIARCH
+	select HAS_DEBUG_LL
+
 config ARCH_ZYNQMP
 	bool "Xilinx ZynqMP-based boards"
 	depends on 64BIT
@@ -259,6 +264,7 @@ source "arch/arm/mach-socfpga/Kconfig"
 source "arch/arm/mach-stm32mp/Kconfig"
 source "arch/arm/mach-versatile/Kconfig"
 source "arch/arm/mach-vexpress/Kconfig"
+source "arch/arm/mach-samsung/Kconfig"
 source "arch/arm/mach-tegra/Kconfig"
 source "arch/arm/mach-zynq/Kconfig"
 source "arch/arm/mach-zynqmp/Kconfig"

@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+if ARCH_SAMSUNG
+
+config MACH_DREAMLTE
+	bool "Samsung Galaxy S8"
+	depends on 64BIT
+	select CPU_V8
+	select BOARD_ARM_DREAMLTE
+	select BOARD_ARM_GENERIC_DT_AARCH64
+	select ARM_PSCI_CLIENT
+	select HW_HAS_PCI
+	select OF_OVERLAY
+
+endif

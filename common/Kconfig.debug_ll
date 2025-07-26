@@ -153,6 +153,13 @@ config DEBUG_VEXPRESS_UART
 	  Say Y here if you want barebox low-level debugging support
 	  on Vexpress.
 
+config DEBUG_DREAMLTE_UART
+	bool "DREAMLTE Debug UART"
+	depends on ARCH_SAMSUNG
+	help
+	  Say Y here if you want barebox low-level debugging support
+	  on Dreamlte.
+
 config DEBUG_VF610_UART
 	bool "VF610 Debug UART"
 	depends on ARCH_VF610
